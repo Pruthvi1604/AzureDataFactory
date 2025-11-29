@@ -104,7 +104,7 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobFSLocation",
-						"fileName": "Orders.csv",
+						"fileName": "orders_test.csv",
 						"folderPath": "sales",
 						"fileSystem": "landing"
 					},

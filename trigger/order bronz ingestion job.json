@@ -19,7 +19,8 @@
 			"ignoreEmptyBlobs": true,
 			"scope": "/subscriptions/b05714b7-12a4-43bd-84cd-d30e33605c8d/resourceGroups/AzureDFTesting/providers/Microsoft.Storage/storageAccounts/landing1",
 			"events": [
-				"Microsoft.Storage.BlobCreated"
+				"Microsoft.Storage.BlobCreated",
+				"Microsoft.Storage.BlobDeleted"
 			]
 		}
 	}

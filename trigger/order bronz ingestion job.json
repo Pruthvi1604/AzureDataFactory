@@ -1,0 +1,26 @@
+{
+	"name": "order bronz ingestion job",
+	"properties": {
+		"description": "Ingestion job to ingest the orders data into ADLS gen2",
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "Orders_Bronze_Ingestion",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/landing/blobs/sales",
+			"blobPathEndsWith": ".csv",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/b05714b7-12a4-43bd-84cd-d30e33605c8d/resourceGroups/AzureDFTesting/providers/Microsoft.Storage/storageAccounts/landing1",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}

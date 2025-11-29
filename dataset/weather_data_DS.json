@@ -5,10 +5,27 @@
 			"referenceName": "weather_data_LS",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"latitude": {
+				"type": "String",
+				"defaultValue": "51.5072"
+			},
+			"longitude": {
+				"type": "String",
+				"defaultValue": "0.1276"
+			},
+			"api_key": {
+				"type": "String",
+				"defaultValue": "9e3129d03863dd3ab5b2351c00de8d66"
+			}
+		},
 		"annotations": [],
 		"type": "RestResource",
 		"typeProperties": {
-			"relativeUrl": "weather/raw/@{formatDateTime(utcNow(),'yyyy/MM/dd')}/@{pipeline().parameters.City}.json"
+			"relativeUrl": {
+				"value": "@concat('/data/2.5/weather?lat=',pipeline().parameters().latitude,'&lon=',pipeline().parameters().longitude,'&appid=',pipeline().parameters().api_key)",
+				"type": "Expression"
+			}
 		},
 		"schema": []
 	}

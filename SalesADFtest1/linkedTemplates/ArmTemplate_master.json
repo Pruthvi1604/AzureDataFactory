@@ -23,6 +23,10 @@
 			"type": "string",
 			"defaultValue": "https://landing1.dfs.core.windows.net/"
 		},
+		"order bronz ingestion job_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/b05714b7-12a4-43bd-84cd-d30e33605c8d/resourceGroups/AzureDFTesting/providers/Microsoft.Storage/storageAccounts/landing1"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -61,6 +65,9 @@
 					},
 					"landing_zone_ls_properties_typeProperties_url": {
 						"value": "[parameters('landing_zone_ls_properties_typeProperties_url')]"
+					},
+					"order bronz ingestion job_properties_typeProperties_scope": {
+						"value": "[parameters('order bronz ingestion job_properties_typeProperties_scope')]"
 					}
 				}
 			},

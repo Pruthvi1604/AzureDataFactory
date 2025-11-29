@@ -1,0 +1,21 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "SalesADFtest1"
+		},
+		"bronze_layer_ls_accountKey": {
+			"value": ""
+		},
+		"landing_zone_ls_accountKey": {
+			"value": ""
+		},
+		"bronze_layer_ls_properties_typeProperties_url": {
+			"value": "https://salesdataindia1.dfs.core.windows.net/"
+		},
+		"landing_zone_ls_properties_typeProperties_url": {
+			"value": "https://landing1.dfs.core.windows.net/"
+		}
+	}
+}

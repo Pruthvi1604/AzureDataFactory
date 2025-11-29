@@ -1,0 +1,70 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "SalesADFtest1"
+		},
+		"bronze_layer_ls_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'bronze_layer_ls'"
+		},
+		"landing_zone_ls_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'landing_zone_ls'"
+		},
+		"bronze_layer_ls_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://salesdataindia1.dfs.core.windows.net/"
+		},
+		"landing_zone_ls_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://landing1.dfs.core.windows.net/"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "SalesADFtest1_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"bronze_layer_ls_accountKey": {
+						"value": "[parameters('bronze_layer_ls_accountKey')]"
+					},
+					"landing_zone_ls_accountKey": {
+						"value": "[parameters('landing_zone_ls_accountKey')]"
+					},
+					"bronze_layer_ls_properties_typeProperties_url": {
+						"value": "[parameters('bronze_layer_ls_properties_typeProperties_url')]"
+					},
+					"landing_zone_ls_properties_typeProperties_url": {
+						"value": "[parameters('landing_zone_ls_properties_typeProperties_url')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}

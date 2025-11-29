@@ -1,0 +1,25 @@
+{
+	"name": "orders data pipeline",
+	"properties": {
+		"description": "to trigger the orders data ingestion job from Azure landing zone to ADLS gen2 Bronze container",
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "pipeline1",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2025-11-30T20:15:00",
+				"timeZone": "India Standard Time"
+			}
+		}
+	}
+}

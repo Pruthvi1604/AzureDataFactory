@@ -7,7 +7,7 @@
 		"pipelines": [
 			{
 				"pipelineReference": {
-					"referenceName": "pipeline1",
+					"referenceName": "Orders_Bronze_Ingestion",
 					"type": "PipelineReference"
 				}
 			}

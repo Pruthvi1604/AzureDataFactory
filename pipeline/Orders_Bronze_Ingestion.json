@@ -1,5 +1,5 @@
 {
-	"name": "pipeline1",
+	"name": "Orders_Bronze_Ingestion",
 	"properties": {
 		"activities": [
 			{

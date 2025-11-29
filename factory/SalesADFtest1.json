@@ -1,0 +1,9 @@
+{
+	"name": "SalesADFtest1",
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "716c06de-ba2a-4728-b31d-a908d375ada7",
+		"tenantId": "b7acaccc-7b28-4c08-ad31-29b64d04dcbf"
+	}
+}

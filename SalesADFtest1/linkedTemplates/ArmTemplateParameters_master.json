@@ -14,35 +14,23 @@
 		"landing_zone_ls_accountKey": {
 			"value": ""
 		},
-		"weather_data_LS_password": {
-			"value": ""
-		},
 		"orders_test_ls_accountKey": {
 			"value": ""
 		},
-		"Weather_Bronze_LS_properties_typeProperties_url": {
-			"value": "https://salesdataindia1.dfs.core.windows.net/"
-		},
-		"bronze_layer_ls_properties_typeProperties_url": {
-			"value": "https://salesdataindia1.dfs.core.windows.net/"
-		},
-		"landing_zone_ls_properties_typeProperties_url": {
-			"value": "https://landing1.dfs.core.windows.net/"
-		},
-		"weather_data_LS_properties_typeProperties_url": {
-			"value": "https://api.openweathermap.org/"
-		},
-		"weather_data_LS_properties_typeProperties_userName": {
-			"value": "pruthvig1604"
-		},
-		"order bronz ingestion job_properties_typeProperties_scope": {
-			"value": "/subscriptions/b05714b7-12a4-43bd-84cd-d30e33605c8d/resourceGroups/AzureDFTesting/providers/Microsoft.Storage/storageAccounts/landing1"
-		},
-		"orders_test_ls_properties_typeProperties_url": {
-			"value": "https://landing1.dfs.core.windows.net/"
+		"weather_data_LS_password": {
+			"value": ""
 		},
 		"AzureSQLkv_properties_typeProperties_baseUrl": {
 			"value": "https://ErrorDBadfPipeline.vault.azure.net/"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_server": {
+			"value": "azuresqldb1604.database.windows.net"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_database": {
+			"value": "AzureSQL"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_userName": {
+			"value": "default"
 		},
 		"ErroSQLls_properties_typeProperties_server": {
 			"value": "azuresqldb1604.database.windows.net"
@@ -53,14 +41,29 @@
 		"ErroSQLls_properties_typeProperties_userName": {
 			"value": "default"
 		},
-		"AzureSqlDatabase1_properties_typeProperties_server": {
-			"value": "azuresqldb1604.database.windows.net"
+		"Weather_Bronze_LS_properties_typeProperties_url": {
+			"value": "https://salesdataindia1.dfs.core.windows.net/"
 		},
-		"AzureSqlDatabase1_properties_typeProperties_database": {
-			"value": "AzureSQL"
+		"bronze_layer_ls_properties_typeProperties_url": {
+			"value": "https://salesdataindia1.dfs.core.windows.net/"
 		},
-		"AzureSqlDatabase1_properties_typeProperties_userName": {
-			"value": "default"
+		"landing_zone_ls_properties_typeProperties_url": {
+			"value": "https://landing1.dfs.core.windows.net/"
+		},
+		"orders_test_ls_properties_typeProperties_url": {
+			"value": "https://landing1.dfs.core.windows.net/"
+		},
+		"weather_data_LS_properties_typeProperties_url": {
+			"value": "https://api.openweathermap.org/"
+		},
+		"weather_data_LS_properties_typeProperties_userName": {
+			"value": "pruthvig1604"
+		},
+		"OrdersQualityTrigger_properties_typeProperties_scope": {
+			"value": "/subscriptions/b05714b7-12a4-43bd-84cd-d30e33605c8d/resourceGroups/AzureDFTesting/providers/Microsoft.Storage/storageAccounts/landing1"
+		},
+		"order bronz ingestion job_properties_typeProperties_scope": {
+			"value": "/subscriptions/b05714b7-12a4-43bd-84cd-d30e33605c8d/resourceGroups/AzureDFTesting/providers/Microsoft.Storage/storageAccounts/landing1"
 		},
 		"containerUri": {
 			"value": ""

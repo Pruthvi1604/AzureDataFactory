@@ -19,13 +19,17 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'landing_zone_ls'"
 		},
+		"orders_test_ls_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'orders_test_ls'"
+		},
 		"weather_data_LS_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'weather_data_LS'"
 		},
-		"orders_test_ls_accountKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'orders_test_ls'"
+		"AzureSQLkv_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://ErrorDBadfPipeline.vault.azure.net/"
 		},
 		"Weather_Bronze_LS_properties_typeProperties_url": {
 			"type": "string",
@@ -39,6 +43,10 @@
 			"type": "string",
 			"defaultValue": "https://landing1.dfs.core.windows.net/"
 		},
+		"orders_test_ls_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://landing1.dfs.core.windows.net/"
+		},
 		"weather_data_LS_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://api.openweathermap.org/"
@@ -46,26 +54,6 @@
 		"weather_data_LS_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "pruthvig1604"
-		},
-		"orders_test_ls_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://landing1.dfs.core.windows.net/"
-		},
-		"AzureSQLkv_properties_typeProperties_baseUrl": {
-			"type": "string",
-			"defaultValue": "https://ErrorDBadfPipeline.vault.azure.net/"
-		},
-		"ErroSQLls_properties_typeProperties_server": {
-			"type": "string",
-			"defaultValue": "azuresqldb1604.database.windows.net"
-		},
-		"ErroSQLls_properties_typeProperties_database": {
-			"type": "string",
-			"defaultValue": "AzureSQL"
-		},
-		"ErroSQLls_properties_typeProperties_userName": {
-			"type": "string",
-			"defaultValue": "default"
 		},
 		"AzureSqlDatabase1_properties_typeProperties_server": {
 			"type": "string",
@@ -79,6 +67,18 @@
 			"type": "string",
 			"defaultValue": "default"
 		},
+		"ErroSQLls_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "azuresqldb1604.database.windows.net"
+		},
+		"ErroSQLls_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "AzureSQL"
+		},
+		"ErroSQLls_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "default"
+		},
 		"order bronz ingestion job_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/b05714b7-12a4-43bd-84cd-d30e33605c8d/resourceGroups/AzureDFTesting/providers/Microsoft.Storage/storageAccounts/landing1"
@@ -88,6 +88,19 @@
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSQLkv')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureKeyVault",
+				"typeProperties": {
+					"baseUrl": "[parameters('AzureSQLkv_properties_typeProperties_baseUrl')]"
+				}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/Weather_Bronze_LS')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
@@ -140,26 +153,6 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/weather_data_LS')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "RestService",
-				"typeProperties": {
-					"url": "[parameters('weather_data_LS_properties_typeProperties_url')]",
-					"enableServerCertificateValidation": true,
-					"authenticationType": "Basic",
-					"userName": "[parameters('weather_data_LS_properties_typeProperties_userName')]",
-					"password": {
-						"type": "SecureString",
-						"value": "[parameters('weather_data_LS_password')]"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/orders_test_ls')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -177,14 +170,21 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/AzureSQLkv')]",
+			"name": "[concat(parameters('factoryName'), '/weather_data_LS')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
-				"type": "AzureKeyVault",
+				"type": "RestService",
 				"typeProperties": {
-					"baseUrl": "[parameters('AzureSQLkv_properties_typeProperties_baseUrl')]"
+					"url": "[parameters('weather_data_LS_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Basic",
+					"userName": "[parameters('weather_data_LS_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('weather_data_LS_password')]"
+					}
 				}
 			},
 			"dependsOn": []
@@ -215,6 +215,35 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/bronze_layer_ls')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/orders_ds')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "orders_test_ls",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "orders_test.csv",
+						"folderPath": "sales",
+						"fileSystem": "landing"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/orders_test_ls')]"
 			]
 		},
 		{
@@ -325,32 +354,32 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/orders_ds')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
+			"name": "[concat(parameters('factoryName'), '/AzureSqlDatabase1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"linkedServiceName": {
-					"referenceName": "orders_test_ls",
-					"type": "LinkedServiceReference"
-				},
 				"annotations": [],
-				"type": "DelimitedText",
+				"type": "AzureSqlDatabase",
 				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": "orders_test.csv",
-						"folderPath": "sales",
-						"fileSystem": "landing"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": []
+					"server": "[parameters('AzureSqlDatabase1_properties_typeProperties_server')]",
+					"database": "[parameters('AzureSqlDatabase1_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": false,
+					"authenticationType": "SQL",
+					"userName": "[parameters('AzureSqlDatabase1_properties_typeProperties_userName')]",
+					"password": {
+						"type": "AzureKeyVaultSecret",
+						"store": {
+							"referenceName": "AzureSQLkv",
+							"type": "LinkedServiceReference"
+						},
+						"secretName": "AzureSQLkey",
+						"secretVersion": "d0ca4d1042674af9b076638fbd7e768a"
+					}
+				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/orders_test_ls')]"
+				"[concat(variables('factoryId'), '/linkedServices/AzureSQLkv')]"
 			]
 		},
 		{
@@ -382,32 +411,45 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/AzureSqlDatabase1')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"name": "[concat(parameters('factoryName'), '/AzureSqlTable1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
 				"annotations": [],
-				"type": "AzureSqlDatabase",
+				"type": "AzureSqlTable",
+				"schema": [],
 				"typeProperties": {
-					"server": "[parameters('AzureSqlDatabase1_properties_typeProperties_server')]",
-					"database": "[parameters('AzureSqlDatabase1_properties_typeProperties_database')]",
-					"encrypt": "mandatory",
-					"trustServerCertificate": false,
-					"authenticationType": "SQL",
-					"userName": "[parameters('AzureSqlDatabase1_properties_typeProperties_userName')]",
-					"password": {
-						"type": "AzureKeyVaultSecret",
-						"store": {
-							"referenceName": "AzureSQLkv",
-							"type": "LinkedServiceReference"
-						},
-						"secretName": "AzureSQLkey",
-						"secretVersion": "d0ca4d1042674af9b076638fbd7e768a"
-					}
+					"schema": "dbo",
+					"table": "Order"
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureSQLkv')]"
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ErrorSQLdb')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ErroSQLls",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "Orders_reject"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ErroSQLls')]"
 			]
 		},
 		{
@@ -461,48 +503,6 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/source_ds')]",
 				"[concat(variables('factoryId'), '/datasets/bronze_layer_ds')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ErrorSQLdb')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "ErroSQLls",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "Orders_reject"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/ErroSQLls')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AzureSqlTable1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureSqlDatabase1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "Order"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
 			]
 		},
 		{
@@ -639,7 +639,7 @@
 						"     isNull(customer_id),",
 						"     order_status!='COMPLETE' && order_status!='PENDING_PAYMENT' && order_status!='CLOSED' && order_status!='PROCESSING',",
 						"     is_valid!='Y' && is_valid!='N',",
-						"     isNull(toDate(order_date, 'yyyy-mm-dd')) ,",
+						"     isNull(toDate(order_date, 'yyyy-mm-dd')),",
 						"     disjoint: false) ~> split1@(ErrorNullOrderID, ErrorOrderDate, ErrorCustID, ErrorOrderStatus, ErrorIsValid, ErrorOrderDateExp, QualityData)",
 						"split1@ErrorNullOrderID sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
@@ -721,39 +721,6 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/order bronz ingestion job')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "Ingestion job to ingest the orders data into ADLS gen2",
-				"annotations": [],
-				"runtimeState": "Started",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "Orders_Bronze_Ingestion",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "BlobEventsTrigger",
-				"typeProperties": {
-					"blobPathBeginsWith": "/landing/blobs/sales",
-					"blobPathEndsWith": ".csv",
-					"ignoreEmptyBlobs": true,
-					"scope": "[parameters('order bronz ingestion job_properties_typeProperties_scope')]",
-					"events": [
-						"Microsoft.Storage.BlobCreated",
-						"Microsoft.Storage.BlobDeleted"
-					]
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/Orders_Bronze_Ingestion')]"
-			]
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/OrderQuality')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -803,6 +770,39 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/dataflows/orders_DF')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/order bronz ingestion job')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Ingestion job to ingest the orders data into ADLS gen2",
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "Orders_Bronze_Ingestion",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "BlobEventsTrigger",
+				"typeProperties": {
+					"blobPathBeginsWith": "/landing/blobs/sales",
+					"blobPathEndsWith": ".csv",
+					"ignoreEmptyBlobs": true,
+					"scope": "[parameters('order bronz ingestion job_properties_typeProperties_scope')]",
+					"events": [
+						"Microsoft.Storage.BlobCreated",
+						"Microsoft.Storage.BlobDeleted"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/Orders_Bronze_Ingestion')]"
 			]
 		}
 	]

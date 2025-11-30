@@ -1,0 +1,10 @@
+{
+	"name": "AzureSQLkv",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://ErrorDBadfPipeline.vault.azure.net/"
+		}
+	}
+}

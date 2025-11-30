@@ -1,0 +1,23 @@
+{
+	"name": "ErroSQLls",
+	"properties": {
+		"annotations": [],
+		"type": "AzureSqlDatabase",
+		"typeProperties": {
+			"server": "azuresqldb1604.database.windows.net",
+			"database": "AzureSQL",
+			"encrypt": "optional",
+			"trustServerCertificate": false,
+			"authenticationType": "SQL",
+			"userName": "default",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "AzureSQLkv",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "AzureSQLkey"
+			}
+		}
+	}
+}

@@ -1,5 +1,11 @@
 {
 	"name": "SalesADFtest1",
+	"properties": {
+		"globalConfigurations": {
+			"factoryStagingLSReferenceName": "orders_test_ls",
+			"factoryStagingLSType": "LinkedServiceReference"
+		}
+	},
 	"location": "centralindia",
 	"identity": {
 		"type": "SystemAssigned",

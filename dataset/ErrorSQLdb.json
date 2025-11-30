@@ -1,0 +1,16 @@
+{
+	"name": "ErrorSQLdb",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ErroSQLls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Orders_reject"
+		}
+	}
+}

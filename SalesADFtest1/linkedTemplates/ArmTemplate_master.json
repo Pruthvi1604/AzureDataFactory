@@ -7,6 +7,10 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "SalesADFtest1"
 		},
+		"Weather_Bronze_LS_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'Weather_Bronze_LS'"
+		},
 		"bronze_layer_ls_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'bronze_layer_ls'"
@@ -14,6 +18,18 @@
 		"landing_zone_ls_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'landing_zone_ls'"
+		},
+		"weather_data_LS_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'weather_data_LS'"
+		},
+		"orders_test_ls_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'orders_test_ls'"
+		},
+		"Weather_Bronze_LS_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://salesdataindia1.dfs.core.windows.net/"
 		},
 		"bronze_layer_ls_properties_typeProperties_url": {
 			"type": "string",
@@ -23,9 +39,49 @@
 			"type": "string",
 			"defaultValue": "https://landing1.dfs.core.windows.net/"
 		},
+		"weather_data_LS_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://api.openweathermap.org/"
+		},
+		"weather_data_LS_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "pruthvig1604"
+		},
 		"order bronz ingestion job_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/b05714b7-12a4-43bd-84cd-d30e33605c8d/resourceGroups/AzureDFTesting/providers/Microsoft.Storage/storageAccounts/landing1"
+		},
+		"orders_test_ls_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://landing1.dfs.core.windows.net/"
+		},
+		"AzureSQLkv_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://ErrorDBadfPipeline.vault.azure.net/"
+		},
+		"ErroSQLls_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "azuresqldb1604.database.windows.net"
+		},
+		"ErroSQLls_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "AzureSQL"
+		},
+		"ErroSQLls_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "default"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "azuresqldb1604.database.windows.net"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "AzureSQL"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "default"
 		},
 		"containerUri": {
 			"type": "string",
@@ -54,17 +110,59 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"Weather_Bronze_LS_accountKey": {
+						"value": "[parameters('Weather_Bronze_LS_accountKey')]"
+					},
 					"bronze_layer_ls_accountKey": {
 						"value": "[parameters('bronze_layer_ls_accountKey')]"
 					},
 					"landing_zone_ls_accountKey": {
 						"value": "[parameters('landing_zone_ls_accountKey')]"
 					},
+					"weather_data_LS_password": {
+						"value": "[parameters('weather_data_LS_password')]"
+					},
+					"orders_test_ls_accountKey": {
+						"value": "[parameters('orders_test_ls_accountKey')]"
+					},
+					"Weather_Bronze_LS_properties_typeProperties_url": {
+						"value": "[parameters('Weather_Bronze_LS_properties_typeProperties_url')]"
+					},
 					"bronze_layer_ls_properties_typeProperties_url": {
 						"value": "[parameters('bronze_layer_ls_properties_typeProperties_url')]"
 					},
 					"landing_zone_ls_properties_typeProperties_url": {
 						"value": "[parameters('landing_zone_ls_properties_typeProperties_url')]"
+					},
+					"weather_data_LS_properties_typeProperties_url": {
+						"value": "[parameters('weather_data_LS_properties_typeProperties_url')]"
+					},
+					"weather_data_LS_properties_typeProperties_userName": {
+						"value": "[parameters('weather_data_LS_properties_typeProperties_userName')]"
+					},
+					"orders_test_ls_properties_typeProperties_url": {
+						"value": "[parameters('orders_test_ls_properties_typeProperties_url')]"
+					},
+					"AzureSQLkv_properties_typeProperties_baseUrl": {
+						"value": "[parameters('AzureSQLkv_properties_typeProperties_baseUrl')]"
+					},
+					"ErroSQLls_properties_typeProperties_server": {
+						"value": "[parameters('ErroSQLls_properties_typeProperties_server')]"
+					},
+					"ErroSQLls_properties_typeProperties_database": {
+						"value": "[parameters('ErroSQLls_properties_typeProperties_database')]"
+					},
+					"ErroSQLls_properties_typeProperties_userName": {
+						"value": "[parameters('ErroSQLls_properties_typeProperties_userName')]"
+					},
+					"AzureSqlDatabase1_properties_typeProperties_server": {
+						"value": "[parameters('AzureSqlDatabase1_properties_typeProperties_server')]"
+					},
+					"AzureSqlDatabase1_properties_typeProperties_database": {
+						"value": "[parameters('AzureSqlDatabase1_properties_typeProperties_database')]"
+					},
+					"AzureSqlDatabase1_properties_typeProperties_userName": {
+						"value": "[parameters('AzureSqlDatabase1_properties_typeProperties_userName')]"
 					},
 					"order bronz ingestion job_properties_typeProperties_scope": {
 						"value": "[parameters('order bronz ingestion job_properties_typeProperties_scope')]"

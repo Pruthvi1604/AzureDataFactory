@@ -1,0 +1,15 @@
+{
+	"name": "adf-stockmarket-dev",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Enabled",
+			"editable": true
+		}
+	},
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "14418880-74b0-45a8-aa47-9112c4a0fadd",
+		"tenantId": "b7acaccc-7b28-4c08-ad31-29b64d04dcbf"
+	}
+}

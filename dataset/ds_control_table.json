@@ -1,0 +1,67 @@
+{
+	"name": "ds_control_table",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "stockmarket_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "source_name",
+				"type": "varchar"
+			},
+			{
+				"name": "symbol_name",
+				"type": "varchar"
+			},
+			{
+				"name": "api_base_url",
+				"type": "varchar"
+			},
+			{
+				"name": "api_endpoint",
+				"type": "varchar"
+			},
+			{
+				"name": "window_minutes",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "last_loaded_timestamp",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "target_container",
+				"type": "varchar"
+			},
+			{
+				"name": "target_path",
+				"type": "varchar"
+			},
+			{
+				"name": "active_flag",
+				"type": "char"
+			},
+			{
+				"name": "created_date",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "control_table"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

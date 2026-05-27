@@ -1,0 +1,90 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adf-stockmarket-dev"
+		},
+		"Bronze_ls_accountKey": {
+			"value": ""
+		},
+		"Weather_Bronze_LS_accountKey": {
+			"value": ""
+		},
+		"bronze_layer_ls_accountKey": {
+			"value": ""
+		},
+		"landing_zone_ls_accountKey": {
+			"value": ""
+		},
+		"orders_test_ls_accountKey": {
+			"value": ""
+		},
+		"weather_data_LS_password": {
+			"value": ""
+		},
+		"AzureSQLkv_properties_typeProperties_baseUrl": {
+			"value": "https://ErrorDBadfPipeline.vault.azure.net/"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_server": {
+			"value": "azuresqldb1604.database.windows.net"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_database": {
+			"value": "AzureSQL"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_userName": {
+			"value": "default"
+		},
+		"Bronze_ls_properties_typeProperties_url": {
+			"value": "https://stockmarketdev.dfs.core.windows.net/"
+		},
+		"ErroSQLls_properties_typeProperties_server": {
+			"value": "azuresqldb1604.database.windows.net"
+		},
+		"ErroSQLls_properties_typeProperties_database": {
+			"value": "AzureSQL"
+		},
+		"ErroSQLls_properties_typeProperties_userName": {
+			"value": "default"
+		},
+		"RestService1_properties_typeProperties_url": {
+			"value": "https://query1.finance.yahoo.com"
+		},
+		"Weather_Bronze_LS_properties_typeProperties_url": {
+			"value": "https://salesdataindia1.dfs.core.windows.net/"
+		},
+		"bronze_layer_ls_properties_typeProperties_url": {
+			"value": "https://salesdataindia1.dfs.core.windows.net/"
+		},
+		"landing_zone_ls_properties_typeProperties_url": {
+			"value": "https://landing1.dfs.core.windows.net/"
+		},
+		"orders_test_ls_properties_typeProperties_url": {
+			"value": "https://landing1.dfs.core.windows.net/"
+		},
+		"stockmarket_ls_properties_typeProperties_server": {
+			"value": "sql-stockmarket-server.database.windows.net"
+		},
+		"stockmarket_ls_properties_typeProperties_database": {
+			"value": "sqldb-stockmarket"
+		},
+		"weather_data_LS_properties_typeProperties_url": {
+			"value": "https://api.openweathermap.org/"
+		},
+		"weather_data_LS_properties_typeProperties_userName": {
+			"value": "pruthvig1604"
+		},
+		"OrdersQualityTrigger_properties_typeProperties_scope": {
+			"value": "/subscriptions/b05714b7-12a4-43bd-84cd-d30e33605c8d/resourceGroups/AzureDFTesting/providers/Microsoft.Storage/storageAccounts/landing1"
+		},
+		"order bronz ingestion job_properties_typeProperties_scope": {
+			"value": "/subscriptions/b05714b7-12a4-43bd-84cd-d30e33605c8d/resourceGroups/AzureDFTesting/providers/Microsoft.Storage/storageAccounts/landing1"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
